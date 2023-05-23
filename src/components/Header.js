@@ -75,7 +75,7 @@ const Header = () => {
             {/* Add social media links based on the `socials` data */}
             <HStack spacing={8}>
             {socials.map((social) => 
-            <a  href={social.url} ><FontAwesomeIcon icon={social.icon} size="2x"  /></a>
+            <a key={social.icon.iconName}  href={social.url} ><FontAwesomeIcon icon={social.icon} size="2x"  /></a>
             )}
             </HStack>
           </nav>
