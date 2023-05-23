@@ -32,6 +32,14 @@ const socials = [
   },
 ];
 
+// adding styling to the icons
+const iconStyle = {
+  gap: "20px",
+  padding: "10px"
+}
+
+//adding smooth scroll whenever an anchor tag is clicked
+
 const Header = () => {
   const handleClick = (anchor) => () => {
     const id = `${anchor}-section`;
@@ -65,10 +73,13 @@ const Header = () => {
         >
           <nav>
             {/* Add social media links based on the `socials` data */}
+            {socials.map((social) => <a style={iconStyle} href={social.url} ><FontAwesomeIcon icon={social.icon} size="2x"  /></a>)}
           </nav>
           <nav>
             <HStack spacing={8}>
               {/* Add links to Projects and Contact me section */}
+              <a href="#projects-section"  onClick={handleClick("#projects")}>Projects</a>
+              <a href="#contactme-section"  onClick={handleClick("#contactme")}>Contact Me</a>
             </HStack>
           </nav>
         </HStack>
