@@ -8,6 +8,7 @@ import {
   faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
 import { Box, HStack } from "@chakra-ui/react";
+import { transform } from "framer-motion";
 
 const socials = [
   {
@@ -46,6 +47,45 @@ const Header = () => {
       });
     }
   };
+  
+  //setting a state to keep scroll position
+  const [scrollData, setScrollData] = useState({
+    y: 0,
+    lastY: 0
+  })
+
+  const currentScrollPosition = useRef(0);
+
+  // state to show and hide nav
+  const [showNav, setShowNav] = useState(false)
+
+  useEffect(()=> {
+    const handleScroll = () => {
+      setScrollData(prevState => {
+        return{
+          y: window.scrollY,
+          lastY: prevState.y
+        }
+      },
+        )
+        currentScrollPosition.current = scrollData.lastY;
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll',handleScroll)
+  },[])
+
+  useEffect(()=>{
+    console.log(scrollData)
+
+    if (scrollData.y > currentScrollPosition.current){
+      setShowNav(true);
+    }
+    else{
+      setShowNav(false);
+    }
+  },[scrollData])
  
   return (
     <Box
@@ -58,13 +98,16 @@ const Header = () => {
       transitionDuration=".3s"
       transitionTimingFunction="ease-in-out"
       backgroundColor="#18181b"
+      className={showNav ? "hideNav" : ""}
     >
-      <Box color="white" maxWidth="1280px" margin="0 auto">
+      <Box color="white" maxWidth="1280px" margin="0 auto" >
         <HStack
           px={16}
           py={4}
           justifyContent="space-between"
           alignItems="center"
+          
+         
         >
           <nav>
             {/* Add social media links based on the `socials` data */}
