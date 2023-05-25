@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -52,6 +52,18 @@ const Header = () => {
     }
   };
 
+  //variable for boxstyle
+  const [boxStyle, setBoxstyle] = useState(0)
+
+  const handleScroll = () => {
+    if (window.scrollY > 0){
+      setBoxstyle(-200)
+      console.log(boxStyle)
+    }
+    else console.log(boxStyle)
+  }
+  window.addEventListener('scroll', handleScroll)
+
   return (
     <Box
       position="fixed"
@@ -63,6 +75,7 @@ const Header = () => {
       transitionDuration=".3s"
       transitionTimingFunction="ease-in-out"
       backgroundColor="#18181b"
+      transform="translateY(-200)"
     >
       <Box color="white" maxWidth="1280px" margin="0 auto">
         <HStack
