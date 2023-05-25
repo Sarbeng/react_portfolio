@@ -32,17 +32,12 @@ const socials = [
   },
 ];
 
-// adding styling to the icons
-const iconStyle = {
-  gap: "20px",
-  padding: "10px"
-}
-
 //adding smooth scroll whenever an anchor tag is clicked
 
 const Header = () => {
   const handleClick = (anchor) => () => {
     const id = `${anchor}-section`;
+    //const id = "projects-section"
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({
@@ -51,19 +46,7 @@ const Header = () => {
       });
     }
   };
-
-  //variable for boxstyle
-  const [boxStyle, setBoxstyle] = useState(0)
-
-  const handleScroll = () => {
-    if (window.scrollY > 0){
-      setBoxstyle(-200)
-      console.log(boxStyle)
-    }
-    else console.log(boxStyle)
-  }
-  window.addEventListener('scroll', handleScroll)
-
+ 
   return (
     <Box
       position="fixed"
@@ -75,7 +58,6 @@ const Header = () => {
       transitionDuration=".3s"
       transitionTimingFunction="ease-in-out"
       backgroundColor="#18181b"
-      transform="translateY(-200)"
     >
       <Box color="white" maxWidth="1280px" margin="0 auto">
         <HStack
@@ -95,8 +77,8 @@ const Header = () => {
           <nav>
             <HStack spacing={8}>
               {/* Add links to Projects and Contact me section */}
-              <a href="#projects-section"  onClick={handleClick("#projects")}>Projects</a>
-              <a href="#contactme-section"  onClick={handleClick("#contactme")}>Contact Me</a>
+              <a href="/#projects"  onClick={handleClick("projects")}>Projects</a>
+              <a href="/#contactme"  onClick={handleClick("contactme")}>Contact Me</a>
             </HStack>
           </nav>
         </HStack>
